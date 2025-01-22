@@ -7,6 +7,22 @@ SOLID chủ yếu liên quan đến việc thiết kế và tổ chức **lớp*
 ## Cụ thể về từng nguyên tắc trong SOLID:
 
 ### **Single Principle (SRP)**: 
+**1. Ví Dụ Dụng Cụ Đa Năng**:
+
+![image](https://github.com/user-attachments/assets/04ae161e-4159-425e-b569-17bb81754248)
+
+  - Dụng cụ đa năng kết hợp nhiều chức năng như kìm, búa, cưa, thước, v.v., nhưng có nhược điểm về hiệu năng: các chức năng như cưa, búa quá bé, thước ngắn, và không có đầu kìm để vặn.
+  - Khi thực hiện công việc cụ thể như gõ đinh, thay vì dùng búa, bạn phải dùng dụng cụ đa năng với nhiều công cụ kết hợp, gây cồng kềnh.
+  - Nếu một phần trong dụng cụ đa năng bị hỏng, bạn phải tháo toàn bộ và sửa chữa, gây khó khăn trong việc duy trì và mở rộng.
+
+- **Kết Luận**: Dụng cụ đa năng quá cồng kềnh, phức tạp, và khó duy trì, mở rộng.
+
+**2. Áp Dụng trong Lập Trình**:
+  - Giống như dụng cụ đa năng, một class có quá nhiều chức năng sẽ trở nên cồng kềnh và khó duy trì.
+  - Khi ứng dụng phát triển và yêu cầu thay đổi, class quá phức tạp sẽ khó thay đổi, tốn thời gian sửa chữa và có thể ảnh hưởng đến các module khác.
+  - **Giải Pháp**: Để dễ bảo trì và mở rộng, mỗi class nên chỉ chịu trách nhiệm một tính năng duy nhất. Nếu có đoạn code không thuộc trách nhiệm của class, hãy tách nó ra thành một class riêng biệt.
+
+### **Open/Closed Principle (OCP)**: 
 
 **1. Có hai nội dung chính trong nguyên lý này:**
   
@@ -89,16 +105,13 @@ public class SalaryCalculator {
 }
 ```
 **Lưu ý**
-- Bản chất của nó là chi nhỏ ra,  tránh liên quan tới nhau, để dễ kiểm soát và thực thi phù hợp với từng mục đích của từng đối tượng và có thể sử dụng lại.
+- Bản chất của nó là chi nhỏ ra,  tránh liên quan tới nhau, để dễ kiểm soát và thực thi phù hợp với từng mục đích của từng đối tượng.
 - Mình có thể liên tưởng về nhiều `class extend một class chung`, hay nhiều `class của nhiều đối tượng khác nhau implement cùng một interface chung`.
 
-3. **Open/Closed Principle (OCP)**: Nguyên tắc này áp dụng cho cả lớp và module, giúp hệ thống có thể mở rộng dễ dàng mà không cần thay đổi mã hiện tại. Việc tạo ra các lớp con hoặc module mới để mở rộng chức năng, thay vì thay đổi các lớp hiện tại, là một phần quan trọng của OCP.
+### **Liskov  Principle (LSP)**: Nguyên tắc này giúp đảm bảo rằng các lớp con có thể thay thế lớp cha mà không gây ra lỗi hoặc thay đổi hành vi của hệ thống, điều này đặc biệt liên quan đến kế thừa và đa hình.
 
-4. **Liskov Substitution Principle (LSP)**: Nguyên tắc này giúp đảm bảo rằng các lớp con có thể thay thế lớp cha mà không gây ra lỗi hoặc thay đổi hành vi của hệ thống, điều này đặc biệt liên quan đến kế thừa và đa hình.
+### **Interface  Principle (ISP)**: Nguyên tắc này chủ yếu áp dụng cho **giao diện** (interface), giúp tránh việc có các giao diện quá phức tạp và khó sử dụng cho các lớp không cần đến tất cả các phương thức trong đó.
 
-5. **Interface Segregation Principle (ISP)**: Nguyên tắc này chủ yếu áp dụng cho **giao diện** (interface), giúp tránh việc có các giao diện quá phức tạp và khó sử dụng cho các lớp không cần đến tất cả các phương thức trong đó.
+### **Dependency  Principle (DIP)**: Nguyên tắc này áp dụng cho cách mà các lớp và module phụ thuộc vào nhau. Thay vì các lớp phụ thuộc vào các chi tiết cụ thể (concrete implementations), chúng nên phụ thuộc vào các trừu tượng (abstracts) như interface hoặc abstract class.
 
-6. **Dependency Inversion Principle (DIP)**: Nguyên tắc này áp dụng cho cách mà các lớp và module phụ thuộc vào nhau. Thay vì các lớp phụ thuộc vào các chi tiết cụ thể (concrete implementations), chúng nên phụ thuộc vào các trừu tượng (abstracts) như interface hoặc abstract class.
 
-### Tóm lại:
-Mặc dù SOLID tập trung vào việc thiết kế lớp và đối tượng, nhưng các nguyên tắc này cũng có thể áp dụng cho các **module**, **giao diện** và các thành phần phần mềm khác. Mục đích của SOLID là giúp tạo ra một hệ thống phần mềm dễ duy trì, mở rộng và dễ hiểu, không chỉ liên quan đến lớp mà còn cả cách thức các lớp tương tác với nhau.
