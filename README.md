@@ -114,9 +114,10 @@ Nguyên tắc này giúp đảm bảo rằng các lớp con có thể thay thế
 
 ### **Interface  Principle (ISP)**
 
+**1. Nội dụng dung chính nguyên lý này**
 > **"Một giao diện, class, hay thập chí là một khí cạnh phần mềm nào đó không nên ép các lớp triển khai các phương thức hay cách tính năng, modules mà chúng không sử dụng."**
 
-**1. Ví dụ về ISP:**
+**2. Ví dụ**
 
 #### Không tuân thủ ISP:
 Giả sử bạn có một giao diện `Animal` với các phương thức `eat()`, `sleep()`, và `fly()`:
@@ -200,7 +201,7 @@ class Bird implements Eater, Sleeper, Flyer {
 }
 ```
 
-**2. Ứng dụng khác**
+**3. Ứng dụng khác**
 
 
 - **API Design (Thiết kế API)** Khi thiết kế API, ISP giúp đảm bảo rằng các endpoints không cung cấp các chức năng không liên quan hoặc không cần thiết.
@@ -232,7 +233,7 @@ class Bird implements Eater, Sleeper, Flyer {
     - `Transactions` – Lưu thông tin giao dịch.
     - `Settings` – Lưu thông tin cài đặt.
 
-**3. Lưu ý**
+**4. Lưu ý**
 - Có thể ta thấy Interface  Principle khá giống với Single Principle nhưng bản chất của chúng là giống nhau. Single Principle nó tập trung vào mục đích nhất định ví dụ: chúng chia ra Services Payment hoăck Service Customer, v.v, mà không quan tâm đến phương thức trong service đó như get, update, delete, add liệu có cái nào không dùng ko. Interface  Principle thì nó quan tâm đến các phương thức này liệu có dùng không, có nên chia nhỏ ra không mà ko.
 
 ### **Dependency  Principle (DIP)**
@@ -271,6 +272,9 @@ class NotificationService {
   }
 }
 ```
-- **high-level modules:** là NotificationService và nó ko nên phụ thuộc vào **low-level modules** như EmailNotifier hay SMSNotifier  mà nó nên phụ thuộc vào **abstraction(Notifier)**.
+- **high-level modules:** là NotificationService và nó ko nên phụ thuộc vào **low-level modules** như `EmailNotifier hay SMSNotifier`  mà nó nên phụ thuộc vào **abstraction(Notifier)**.
 - **abstraction (Notifier)** không nên phụ thuộc vào chi tiết cụ thể nghĩa là ko có `implement` nào trong `Notifier` nó ko cần biết `message` củ thể là gì. Mà ngược lại `message` phải xét xem trong `bstraction` này mình có được sử dụng hay không.
 
+**3. Ứng dụng khác**
+- **evOps và CI/CD** Sử dụng abstraction để quản lý các môi trường (staging, production) thay vì viết các pipeline cụ thể cho từng môi trường.
+- **Tích hợp bên thứ ba (Third-Party Integration)** Khi sử dụng dịch vụ thanh toán (PayPal, Stripe), bạn có thể tạo một `abstraction PaymentGateway` thay vì tích hợp trực tiếp với từng dịch vụ cụ thể.
