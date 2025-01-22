@@ -110,7 +110,96 @@ public class SalaryCalculator {
 
 ### **Liskov  Principle (LSP)**: Nguyên tắc này giúp đảm bảo rằng các lớp con có thể thay thế lớp cha mà không gây ra lỗi hoặc thay đổi hành vi của hệ thống, điều này đặc biệt liên quan đến kế thừa và đa hình.
 
-### **Interface  Principle (ISP)**: Nguyên tắc này chủ yếu áp dụng cho **giao diện** (interface), giúp tránh việc có các giao diện quá phức tạp và khó sử dụng cho các lớp không cần đến tất cả các phương thức trong đó.
+### **Interface  Principle (ISP)**
+
+> **"Một giao diện, class, hay thập chí là một khí cạnh phần mềm nào đó không nên ép các lớp triển khai các phương thức hay cách tính năng, modules mà chúng không sử dụng."**
+
+**1. Ví dụ về ISP:**
+
+#### Không tuân thủ ISP:
+Giả sử bạn có một giao diện `Animal` với các phương thức `eat()`, `sleep()`, và `fly()`:
+
+```typescript
+interface Animal {
+    eat(): void;
+    sleep(): void;
+    fly(): void;
+}
+
+class Dog implements Animal {
+    eat() {
+        console.log("Dog is eating");
+    }
+    
+    sleep() {
+        console.log("Dog is sleeping");
+    }
+    
+    fly() {
+        // Lớp Dog không biết bay, nhưng vẫn phải triển khai phương thức này
+        throw new Error("Dogs cannot fly");
+    }
+}
+
+class Bird implements Animal {
+    eat() {
+        console.log("Bird is eating");
+    }
+    
+    sleep() {
+        console.log("Bird is sleeping");
+    }
+    
+    fly() {
+        console.log("Bird is flying");
+    }
+}
+```
+
+Trong ví dụ trên, lớp `Dog` không có khả năng bay, nhưng vẫn phải triển khai phương thức `fly()` mặc dù nó không sử dụng. Điều này vi phạm ISP.
+
+#### Tuân thủ ISP:
+
+```typescript
+interface Eater {
+    eat(): void;
+}
+
+interface Sleeper {
+    sleep(): void;
+}
+
+interface Flyer {
+    fly(): void;
+}
+
+class Dog implements Eater, Sleeper {
+    eat() {
+        console.log("Dog is eating");
+    }
+    
+    sleep() {
+        console.log("Dog is sleeping");
+    }
+}
+
+class Bird implements Eater, Sleeper, Flyer {
+    eat() {
+        console.log("Bird is eating");
+    }
+    
+    sleep() {
+        console.log("Bird is sleeping");
+    }
+    
+    fly() {
+        console.log("Bird is flying");
+    }
+}
+```
+
+
+
 
 ### **Dependency  Principle (DIP)**: Nguyên tắc này áp dụng cho cách mà các lớp và module phụ thuộc vào nhau. Thay vì các lớp phụ thuộc vào các chi tiết cụ thể (concrete implementations), chúng nên phụ thuộc vào các trừu tượng (abstracts) như interface hoặc abstract class.
 
