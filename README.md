@@ -272,9 +272,14 @@ class NotificationService {
   }
 }
 ```
-- **high-level modules:** là NotificationService và nó ko nên phụ thuộc vào **low-level modules** như `EmailNotifier hay SMSNotifier`  mà nó nên phụ thuộc vào **abstraction(Notifier)**.
-- **abstraction (Notifier)** không nên phụ thuộc vào chi tiết cụ thể nghĩa là ko có `implement` nào trong `Notifier` nó ko cần biết `message` củ thể là gì. Mà ngược lại `message` phải xét xem trong `bstraction` này mình có được sử dụng hay không.
+- **High-level modules:** là `NotificationService` và nó ko nên phụ thuộc vào **low-level modules** như `EmailNotifier hay SMSNotifier`  mà nó nên phụ thuộc vào `abstraction(Notifier)`.
+- **Abstraction (Notifier)** không nên phụ thuộc vào chi tiết cụ thể nghĩa là ko có `implement` nào trong `Notifier` nó ko cần biết `message` củ thể là gì. Mà ngược lại `message` phải xét xem trong `bstraction` này mình có được sử dụng hay không.
 
 **3. Ứng dụng khác**
 - **evOps và CI/CD** Sử dụng abstraction để quản lý các môi trường (staging, production) thay vì viết các pipeline cụ thể cho từng môi trường.
 - **Tích hợp bên thứ ba (Third-Party Integration)** Khi sử dụng dịch vụ thanh toán (PayPal, Stripe), bạn có thể tạo một `abstraction PaymentGateway` thay vì tích hợp trực tiếp với từng dịch vụ cụ thể.
+
+**Lưu ý**
+- DIP Không phụ thuộc trực tiếp vào các chi tiết cụ thể.
+- DIP tập trung vào abstraction để tạo ra hệ thống linh hoạt và dễ bảo trì.
+- DIP thường được thực thi thông qua các pattern như `Dependency Injection` và `Factory Pattern`.
