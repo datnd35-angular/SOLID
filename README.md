@@ -110,7 +110,85 @@ public class SalaryCalculator {
 
 ### **III. Liskov  Principle (LSP)**: 
 
-Nguyên tắc này giúp đảm bảo rằng các lớp con có thể thay thế lớp cha mà không gây ra lỗi hoặc thay đổi hành vi của hệ thống, điều này đặc biệt liên quan đến kế thừa và đa hình.
+**1. Nội dung chính trong nguyên lý này:**
+
+> **Một lớp con phải có khả năng thay thế lớp cha mà không làm thay đổi tính đúng đắn của chương trình.**  
+
+Điều này có nghĩa là:
+- Nếu bạn có một đoạn mã hoạt động đúng khi sử dụng một đối tượng của lớp cha, thì nó cũng phải hoạt động đúng khi bạn thay thế đối tượng đó bằng một đối tượng của lớp con.
+- Các lớp con không được thay đổi hành vi của lớp cha theo cách vi phạm các giả định mà người dùng lớp cha đã đặt ra.
+
+**2. Ý nghĩa**
+LSP đảm bảo rằng khi sử dụng kế thừa trong lập trình hướng đối tượng:
+1. **Tính đúng đắn của hệ thống**: Các lớp con phải duy trì logic mà lớp cha đã định nghĩa.
+2. **Khả năng mở rộng**: Lớp con có thể mở rộng chức năng nhưng không được làm phá vỡ chức năng hiện tại.
+3. **Tăng tính tái sử dụng**: Người dùng chỉ cần làm việc với các interface hoặc lớp cha mà không cần quan tâm đến các chi tiết cụ thể của lớp con.
+
+
+**3. Ví dụ**
+**Vi phạm LSP**
+Giả sử bạn có lớp `Rectangle` và lớp con `Square`:
+
+```typescript
+class Rectangle {
+  constructor(protected width: number, protected height: number) {}
+
+  setWidth(width: number): void {
+    this.width = width;
+  }
+
+  setHeight(height: number): void {
+    this.height = height;
+  }
+
+  getArea(): number {
+    return this.width * this.height;
+  }
+}
+
+class Square extends Rectangle {
+  setWidth(width: number): void {
+    this.width = this.height = width; // Đảm bảo width và height bằng nhau
+  }
+
+  setHeight(height: number): void {
+    this.width = this.height = height; // Đảm bảo width và height bằng nhau
+  }
+}
+```
+
+**Vấn đề**: 
+- `Square` thay đổi hành vi của lớp `Rectangle`.
+- Nếu một đoạn mã sử dụng `Rectangle` mong đợi hành vi của hình chữ nhật (chiều rộng và chiều cao có thể khác nhau), thì việc sử dụng `Square` sẽ làm sai lệch kết quả.
+
+**Cách sửa**
+Thay vì kế thừa, bạn có thể sử dụng một interface hoặc một lớp cơ sở trừu tượng chung:
+
+```typescript
+interface Shape {
+  getArea(): number;
+}
+
+class Rectangle implements Shape {
+  constructor(private width: number, private height: number) {}
+
+  getArea(): number {
+    return this.width * this.height;
+  }
+}
+
+class Square implements Shape {
+  constructor(private side: number) {}
+
+  getArea(): number {
+    return this.side * this.side;
+  }
+}
+```
+
+**3. Ứng dụng khác**
+- **Database Design** Nếu bạn thay đổi cấu trúc bảng hoặc bổ sung bảng, các query hoặc view cũ không được bị phá vỡ.
+- **Microservices** Nếu một microservice được cập nhật để thêm một feature mới, nó không được phá vỡ cách các microservices khác tương tác với nó.
 
 ### **IV. Interface  Principle (ISP)**
 
