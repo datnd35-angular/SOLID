@@ -198,6 +198,42 @@ class Bird implements Eater, Sleeper, Flyer {
 }
 ```
 
+**Ứng dụng khác**
+
+
+- **API Design (Thiết kế API)** Khi thiết kế API, ISP giúp đảm bảo rằng các endpoints không cung cấp các chức năng không liên quan hoặc không cần thiết.
+  
+    Tách thành các endpoint nhỏ hơn:
+    - `/users/{id}/profile` – Trả về thông tin cơ bản của người dùng.
+    - `/users/{id}/transactions` – Trả về lịch sử giao dịch.
+    - `/users/{id}/activities` – Trả về lịch sử hoạt động.
+
+- **Microservices Architecture** Trong kiến trúc microservices, ISP đảm bảo rằng mỗi service chỉ chịu trách nhiệm cho một nhóm chức năng cụ thể và không ép buộc các service khác tương tác với những chức năng không cần thiết.
+
+    Giả sử có một service quản lý người dùng và dịch vụ thanh toán:
+    
+    - Nếu service người dùng cần gọi đến service thanh toán để lấy dữ liệu không cần thiết (như thông tin chi tiết hóa đơn thay vì chỉ trạng thái thanh toán), điều này vi phạm ISP.
+    
+    **Sửa chữa:**
+    Tách thành các service nhỏ hơn:
+    - **UserService** – Quản lý thông tin người dùng.
+    - **PaymentService** – Quản lý thanh toán.
+    - **BillingService** – Quản lý hóa đơn.
+      
+- **Database Design** Trong thiết kế cơ sở dữ liệu, ISP có thể được áp dụng thông qua việc phân chia các bảng dữ liệu hoặc quan hệ để đảm bảo tính tách biệt.
+
+    Một bảng `Users` lưu trữ thông tin người dùng và bao gồm cả dữ liệu không liên quan như lịch sử giao dịch hoặc cài đặt hệ thống.
+    
+    **Sửa chữa:**
+    Tách bảng thành:
+    - `Users` – Lưu thông tin cơ bản người dùng.
+    - `Transactions` – Lưu thông tin giao dịch.
+    - `Settings` – Lưu thông tin cài đặt.
+
+
+
+
+
 
 
 
