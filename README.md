@@ -6,7 +6,7 @@ SOLID chủ yếu liên quan đến việc thiết kế và tổ chức **lớp*
 
 ## Cụ thể về từng nguyên tắc trong SOLID:
 
-### **Single Principle (SRP)**: 
+### **I. Single Principle (SRP)**: 
 **1. Ví Dụ Dụng Cụ Đa Năng**:
 
 ![image](https://github.com/user-attachments/assets/04ae161e-4159-425e-b569-17bb81754248)
@@ -22,7 +22,7 @@ SOLID chủ yếu liên quan đến việc thiết kế và tổ chức **lớp*
   - Khi ứng dụng phát triển và yêu cầu thay đổi, class quá phức tạp sẽ khó thay đổi, tốn thời gian sửa chữa và có thể ảnh hưởng đến các module khác.
   - **Giải Pháp**: Để dễ bảo trì và mở rộng, mỗi class nên chỉ chịu trách nhiệm một tính năng duy nhất. Nếu có đoạn code không thuộc trách nhiệm của class, hãy tách nó ra thành một class riêng biệt.
 
-### **Open/Closed Principle (OCP)**: 
+### **II. Open/Closed Principle (OCP)**: 
 
 **1. Có hai nội dung chính trong nguyên lý này:**
   
@@ -108,11 +108,11 @@ public class SalaryCalculator {
 - Bản chất của nó là chi nhỏ ra,  tránh liên quan tới nhau, để dễ kiểm soát và thực thi phù hợp với từng mục đích của từng đối tượng.
 - Mình có thể liên tưởng về nhiều `class extend một class chung`, hay nhiều `class của nhiều đối tượng khác nhau implement cùng một interface chung`.
 
-### **Liskov  Principle (LSP)**: 
+### **III. Liskov  Principle (LSP)**: 
 
 Nguyên tắc này giúp đảm bảo rằng các lớp con có thể thay thế lớp cha mà không gây ra lỗi hoặc thay đổi hành vi của hệ thống, điều này đặc biệt liên quan đến kế thừa và đa hình.
 
-### **Interface  Principle (ISP)**
+### **IV. Interface  Principle (ISP)**
 
 **1. Nội dụng dung chính nguyên lý này**
 > **"Một giao diện, class, hay thập chí là một khí cạnh phần mềm nào đó không nên ép các lớp triển khai các phương thức hay cách tính năng, modules mà chúng không sử dụng."**
@@ -236,7 +236,7 @@ class Bird implements Eater, Sleeper, Flyer {
 **4. Lưu ý**
 - Có thể ta thấy Interface  Principle khá giống với Single Principle nhưng bản chất của chúng là giống nhau. Single Principle nó tập trung vào mục đích nhất định ví dụ: chúng chia ra Services Payment hoăck Service Customer, v.v, mà không quan tâm đến phương thức trong service đó như get, update, delete, add liệu có cái nào không dùng ko. Interface  Principle thì nó quan tâm đến các phương thức này liệu có dùng không, có nên chia nhỏ ra không mà ko.
 
-### **Dependency  Principle (DIP)**
+### **V. Dependency  Principle (DIP)**
 
 **1. Có hai nội dung chính trong nguyên lý này:**
 
