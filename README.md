@@ -108,7 +108,9 @@ public class SalaryCalculator {
 - Bản chất của nó là chi nhỏ ra,  tránh liên quan tới nhau, để dễ kiểm soát và thực thi phù hợp với từng mục đích của từng đối tượng.
 - Mình có thể liên tưởng về nhiều `class extend một class chung`, hay nhiều `class của nhiều đối tượng khác nhau implement cùng một interface chung`.
 
-### **Liskov  Principle (LSP)**: Nguyên tắc này giúp đảm bảo rằng các lớp con có thể thay thế lớp cha mà không gây ra lỗi hoặc thay đổi hành vi của hệ thống, điều này đặc biệt liên quan đến kế thừa và đa hình.
+### **Liskov  Principle (LSP)**: 
+
+Nguyên tắc này giúp đảm bảo rằng các lớp con có thể thay thế lớp cha mà không gây ra lỗi hoặc thay đổi hành vi của hệ thống, điều này đặc biệt liên quan đến kế thừa và đa hình.
 
 ### **Interface  Principle (ISP)**
 
@@ -198,7 +200,7 @@ class Bird implements Eater, Sleeper, Flyer {
 }
 ```
 
-**Ứng dụng khác**
+**2. Ứng dụng khác**
 
 
 - **API Design (Thiết kế API)** Khi thiết kế API, ISP giúp đảm bảo rằng các endpoints không cung cấp các chức năng không liên quan hoặc không cần thiết.
@@ -230,13 +232,45 @@ class Bird implements Eater, Sleeper, Flyer {
     - `Transactions` – Lưu thông tin giao dịch.
     - `Settings` – Lưu thông tin cài đặt.
 
+**3. Lưu ý**
+- Có thể ta thấy Interface  Principle khá giống với Single Principle nhưng bản chất của chúng là giống nhau. Single Principle nó tập trung vào mục đích nhất định ví dụ: chúng chia ra Services Payment hoăck Service Customer, v.v, mà không quan tâm đến phương thức trong service đó như get, update, delete, add liệu có cái nào không dùng ko. Interface  Principle thì nó quan tâm đến các phương thức này liệu có dùng không, có nên chia nhỏ ra không mà ko.
 
+### **Dependency  Principle (DIP)**
 
+**1. Có hai nội dung chính trong nguyên lý này:**
 
+- Nhấn mạnh rằng các `module cấp cao (high-level modules)` không nên phụ thuộc vào các `module cấp thấp (low-level modules)`. Cả hai nên phụ thuộc vào `abstraction (tức là interface hoặc abstract class)`.
+- `abstraction không nên phụ thuộc vào chi tiết cụ thể (details)`, mà ngược lại, `chi tiết cụ thể nên phụ thuộc vào abstraction`.
 
+**2. Ví dụ**
 
+Khi xây dựng các module giao tiếp, chẳng hạn như gửi email, tin nhắn SMS, hoặc thông báo đẩy, bạn có thể áp dụng DIP để giảm phụ thuộc vào các dịch vụ cụ thể.
 
+```
+interface Notifier {
+  sendNotification(message: string): void;
+}
 
-### **Dependency  Principle (DIP)**: Nguyên tắc này áp dụng cho cách mà các lớp và module phụ thuộc vào nhau. Thay vì các lớp phụ thuộc vào các chi tiết cụ thể (concrete implementations), chúng nên phụ thuộc vào các trừu tượng (abstracts) như interface hoặc abstract class.
+class EmailNotifier implements Notifier {
+  sendNotification(message: string): void {
+    console.log(`Sending email: ${message}`);
+  }
+}
 
+class SMSNotifier implements Notifier {
+  sendNotification(message: string): void {
+    console.log(`Sending SMS: ${message}`);
+  }
+}
+
+class NotificationService {
+  constructor(private notifier: Notifier) {}
+
+  notify(message: string): void {
+    this.notifier.sendNotification(message);
+  }
+}
+```
+- **high-level modules:** là NotificationService và nó ko nên phụ thuộc vào **low-level modules** như EmailNotifier hay SMSNotifier  mà nó nên phụ thuộc vào **abstraction(Notifier)**.
+- **abstraction (Notifier)** không nên phụ thuộc vào chi tiết cụ thể nghĩa là ko có `implement` nào trong `Notifier` nó ko cần biết `message` củ thể là gì. Mà ngược lại `message` phải xét xem trong `bstraction` này mình có được sử dụng hay không.
 
