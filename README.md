@@ -90,7 +90,7 @@ public class SalaryCalculator {
 ```
 **Lưu ý**
 - Bản chất của nó là chi nhỏ ra,  tránh liên quan tới nhau, để dễ kiểm soát và thực thi phù hợp với từng mục đích của từng đối tượng và có thể sử dụng lại.
-- Mình có thể liên tưởng về nhiều class extend một class chung, hay nhiều class của nhiều đối tượng khác nhau implement cùng một interface chung.
+- Mình có thể liên tưởng về nhiều `class extend một class chung`, hay nhiều `class của nhiều đối tượng khác nhau implement cùng một interface chung`.
 
 3. **Open/Closed Principle (OCP)**: Nguyên tắc này áp dụng cho cả lớp và module, giúp hệ thống có thể mở rộng dễ dàng mà không cần thay đổi mã hiện tại. Việc tạo ra các lớp con hoặc module mới để mở rộng chức năng, thay vì thay đổi các lớp hiện tại, là một phần quan trọng của OCP.
 
