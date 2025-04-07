@@ -108,7 +108,7 @@ public class SalaryCalculator {
 - Bản chất của nó là chi nhỏ ra,  tránh liên quan tới nhau, để dễ kiểm soát và thực thi phù hợp với từng mục đích của từng đối tượng.
 - Mình có thể liên tưởng về nhiều `class extend một class chung`, hay nhiều `class của nhiều đối tượng khác nhau implement cùng một interface chung`.
 
-### **III. Liskov  Principle (LSP)**: 
+### **III. Liskov  Principle (LSP Nguyên tắc thay thế Liskov)**: 
 
 **1. Nội dung chính trong nguyên lý này:**
 
@@ -190,7 +190,7 @@ class Square implements Shape {
 - **Database Design** Nếu bạn thay đổi cấu trúc bảng hoặc bổ sung bảng, các query hoặc view cũ không được bị phá vỡ.
 - **Microservices** Nếu một microservice được cập nhật để thêm một feature mới, nó không được phá vỡ cách các microservices khác tương tác với nó.
 
-### **IV. Interface  Principle (ISP)**
+### **IV. Interface  Principle (ISP Nguyên tắc phân tách giao diện)**
 
 **1. Nội dụng dung chính nguyên lý này**
 > **"Một giao diện, class, hay thập chí là một khí cạnh phần mềm nào đó không nên ép các lớp triển khai các phương thức hay cách tính năng, modules mà chúng không sử dụng."**
@@ -314,7 +314,7 @@ class Bird implements Eater, Sleeper, Flyer {
 **4. Lưu ý**
 - Có thể ta thấy Interface  Principle khá giống với Single Principle nhưng bản chất của chúng là giống nhau. Single Principle nó tập trung vào mục đích nhất định ví dụ: chúng chia ra Services Payment hoăck Service Customer, v.v, mà không quan tâm đến phương thức trong service đó như get, update, delete, add liệu có cái nào không dùng ko. Interface  Principle thì nó quan tâm đến các phương thức này liệu có dùng không, có nên chia nhỏ ra không mà ko.
 
-### **V. Dependency  Principle (DIP)**
+### **V. Dependency Inversion Principle (DIP Nguyên tắc đảo ngược phụ thuộc)**
 
 **1. Có hai nội dung chính trong nguyên lý này:**
 
