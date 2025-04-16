@@ -4,6 +4,8 @@ Mục đích đảm bảo hệ thống phần mềm trở nên dễ bảo trì, 
 
 SOLID chủ yếu liên quan đến việc thiết kế và tổ chức **lớp** (class) và **đối tượng** (objects), nhưng mục tiêu của SOLID không chỉ xoay quanh việc thiết kế lớp, mà là để đảm bảo hệ thống phần mềm trở nên dễ bảo trì, dễ mở rộng và giảm thiểu sự phụ thuộc lẫn nhau, cho dù bạn đang làm việc với lớp, module hay bất kỳ thành phần phần mềm nào.
 
+=> Tư duy phát triển phần mềm.
+
 ## Cụ thể về từng nguyên tắc trong SOLID:
 
 ### **I. Single Principle (SRP)**: 
